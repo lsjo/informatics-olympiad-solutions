@@ -1,0 +1,24 @@
+from collections import defaultdict
+
+ghostin = open("ghostin.txt", "r")
+ghostout = open("ghostout.txt", "w")
+
+N, K = map(int, ghostin.readline().split())
+
+X = []
+T = []
+
+for i in range(N):
+    a, b = map(int, ghostin.readline().split())
+    X.append(a)
+    T.append(b)
+
+starts = defaultdict(int)
+
+for i in range(N):
+    num = X[i] * K - T[i]
+    starts[num] += 1
+
+num = max(starts.values())
+
+ghostout.write(str(num))
